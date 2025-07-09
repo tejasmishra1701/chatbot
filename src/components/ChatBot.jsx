@@ -54,8 +54,11 @@ const Chatbot = () => {
         body: JSON.stringify({ message: input }),
       });
 
-      const data = await response.text(); // <-- Use .text() instead of .json()
-      let botReply = data || "Sorry, I didn't get that.";
+      const data = await response.json(); // Use .json() to parse the array
+      let botReply = "Sorry, I didn't get that.";
+      if (Array.isArray(data) && data[0]?.output) {
+        botReply = data[0].output;
+      }
       setMessages(msgs => [...msgs, { sender: 'bot', text: botReply }]);
     } catch (error) {
       setMessages(msgs => [...msgs, { sender: 'bot', text: 'Sorry, something went wrong.' }]);
