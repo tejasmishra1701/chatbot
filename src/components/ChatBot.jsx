@@ -102,7 +102,7 @@ const Chatbot = () => {
                 </div>
               ))}
               {loading && (
-                <div className="chatbot-message chatbot-message-bot">
+                <div className="chatbot-message chatbot-message-bot">Typing
                   <TypingDots />
                 </div>
               )}
