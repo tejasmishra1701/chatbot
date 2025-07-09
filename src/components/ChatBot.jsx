@@ -55,16 +55,8 @@ const Chatbot = () => {
       });
 
       const data = await response.json();
-      // data is like: [ { output: '{ "reply": "..." }' } ]
-      let botReply = "Sorry, I didn't get that.";
-      if (Array.isArray(data) && data[0]?.output) {
-        try {
-          const parsed = JSON.parse(data[0].output);
-          botReply = parsed.reply || JSON.stringify(parsed);
-        } catch {
-          botReply = data[0].output;
-        }
-      }
+      // Now data is { reply: "..." }
+      let botReply = data.reply || "Sorry, I didn't get that.";
       setMessages(msgs => [...msgs, { sender: 'bot', text: botReply }]);
     } catch (error) {
       setMessages(msgs => [...msgs, { sender: 'bot', text: 'Sorry, something went wrong.' }]);
