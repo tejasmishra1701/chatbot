@@ -14,7 +14,7 @@ const TypingDots = () => {
 
 const Chatbot = () => {
   const [messages, setMessages] = useState([
-    { sender: 'bot', text: 'Hi! How can I help you today?' }
+    { sender: 'bot', text: 'Hi! I\'m Logan! How can I help you today?' }
   ]);
   const [input, setInput] = useState('');
   const [loading, setLoading] = useState(false);
