@@ -5,11 +5,7 @@ import { createChat } from '@n8n/chat';
 import ChatBot from './components/ChatBot'
 
 function App() {
-  // useEffect(() => {
-  //   createChat({
-  //     webhookUrl: 'https://tejasworking.app.n8n.cloud/webhook/40dbe126-7f62-4673-835d-f61988f671cd/chat'
-  //   });
-  // }, []);
+  
 
   return (
     <>  

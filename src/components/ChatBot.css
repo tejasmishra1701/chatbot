@@ -27,7 +27,7 @@
 }
 
 .chatbot-container {
-  width: 370px;
+  width: 400px;
   max-width: 98vw;
   font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
   animation: chatbot-pop 0.22s cubic-bezier(.4,2,.6,1);

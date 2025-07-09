@@ -20,6 +20,7 @@ const Chatbot = () => {
   const [loading, setLoading] = useState(false);
   const [open, setOpen] = useState(false);
   const messagesEndRef = useRef(null);
+  const chatRef = useRef(null);
 
   useEffect(() => {
     if (open) {
@@ -27,11 +28,23 @@ const Chatbot = () => {
     }
   }, [messages, open]);
 
+  // Collapse chat when clicking outside
+  useEffect(() => {
+    if (!open) return;
+    const handleClick = (e) => {
+      if (chatRef.current && !chatRef.current.contains(e.target)) {
+        setOpen(false);
+      }
+    };
+    document.addEventListener('mousedown', handleClick);
+    return () => document.removeEventListener('mousedown', handleClick);
+  }, [open]);
+
   const sendMessage = async () => {
     if (!input.trim()) return;
     const userMessage = { sender: 'user', text: input };
     setMessages(msgs => [...msgs, userMessage]);
-    setInput(''); // Clear input immediately after sending
+    setInput('');
     setLoading(true);
 
     try {
@@ -71,7 +84,7 @@ const Chatbot = () => {
         </button>
       )}
       {open && (
-        <div className="chatbot-container">
+        <div className="chatbot-container" ref={chatRef}>
           <div className="chatbot-box">
             <div className="chatbot-header">
               <span>Pixora Chat</span>
@@ -89,7 +102,7 @@ const Chatbot = () => {
                 </div>
               ))}
               {loading && (
-                <div className="chatbot-message chatbot-message-bot">Typing
+                <div className="chatbot-message chatbot-message-bot">
                   <TypingDots />
                 </div>
               )}
